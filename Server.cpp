@@ -16,7 +16,7 @@ int main(){
     WSAStartup(MAKEWORD(2,2), &wsa);
     SOCKET serverSocket=socket(AF_INET,SOCK_DGRAM,0);
 
-    struct sockaddr_in serverAddr, clinetAddr;
+    struct sockaddr_in serverAddr, clientAddr;
     int clientLen;
     char buffer[BUFFER_SIZE];
 
@@ -30,5 +30,17 @@ int main(){
     }
     std::cout <<"Serveri u ndey ne porten "<<PORT <<"..." <<std::endl;
     std::cout << "Vetem Admini ("<<IP_ADMINIT<<") ka leje te shkruaj."<<std::endl;
+
+    while(true){
+        clientLen=sizeof(clientAddr);
+        memset(buffer,0,BUFFER_SIZE);
+
+        int n=recvfrom(serverSocket, buffer, BUFFER_SIZE-1,0,(sockaddr*)&clientAddr,&clientLen);
+        if(n == SOCKET_ERROR) continue;
+
+        buffer[n]='\0';
+        std::string msg(buffer);
+        std::string response;
+    }
 
 }
