@@ -44,6 +44,18 @@ int main(){
 
         std::string senderIP=inet_ntoa(clientAddr.sin_addr);
         std::cout <<"Mesazh nga ["<< senderIP <<"]:" << msg << std::endl;
+
+        if(msg.rfind("read|",0)==0){
+            std::string filename=msg.substr(5);
+            std::ifstream file(filename);
+            if(file.is_open()){
+                std::string content((std::istreambuf_iterator<char>(file)),std::istreambuf_iterator<char>());
+                response=content.empty() ? "File eshte bosh!" : content;
+                file.close();
+            }else{
+                response="Gabim FIle nuk ekziston!";
+            }
+        }
     }
 
 }
