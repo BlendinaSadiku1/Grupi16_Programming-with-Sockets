@@ -1,0 +1,33 @@
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#include <iostream>
+#include <cstring>
+#include <winsock2.h>
+#include <string>
+
+#pragma comment(lib, "ws2_32.lib")
+
+#define PORT 4444
+#define BUFFER_SIZE 2048
+
+int main() {
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2, 2), &wsa);
+
+    SOCKET clientSocket = socket(AF_INET, SOCK_DGRAM, 0);
+    if (clientSocket == INVALID_SOCKET) {
+        std::cout << "Gabim ne socket!\n";
+        return 1;
+    }
+
+    struct sockaddr_in serverAddr;
+    int len = sizeof(serverAddr);
+
+    std::string serverIP;
+    std::cout << "Shkruaj IP e serverit (ose 127.0.0.1): ";
+    std::getline(std::cin, serverIP);
+
+    memset(&serverAddr, 0, sizeof(serverAddr));
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(PORT);
+    serverAddr.sin_addr.s_addr = inet_addr(serverIP.c_str());
+
