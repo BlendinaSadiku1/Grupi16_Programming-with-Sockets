@@ -31,3 +31,19 @@ int main() {
     serverAddr.sin_port = htons(PORT);
     serverAddr.sin_addr.s_addr = inet_addr(serverIP.c_str());
 
+//Loop qe klienti te mund te dergoj shume komanda
+while (true) {
+    std::string message;
+    std::cout << "\nKomandat: read|file.txt OSE write|file.txt|teksti (ose 'exit'):\n";
+    std::cout << "> ";
+    std::getline(std::cin, message);
+
+    if (message == "exit") break;
+
+    int sent = sendto(clientSocket, message.c_str(), (int)message.length(), 0,
+                      (sockaddr*)&serverAddr, len);
+
+    if (sent == SOCKET_ERROR) {
+        std::cout << "Gabim ne dergim: " << WSAGetLastError() << std::endl;
+        continue;
+    }
