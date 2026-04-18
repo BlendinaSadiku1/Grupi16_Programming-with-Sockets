@@ -31,7 +31,7 @@ int main(){
     std::cout <<"Serveri u ndey ne porten "<<PORT <<"..." <<std::endl;
     std::cout << "Vetem Admini ("<<IP_ADMINIT<<") ka leje te shkruaj."<<std::endl;
 
-    while(true)
+    while(true){
         clientLen=sizeof(clientAddr);
         memset(buffer,0,BUFFER_SIZE);
 
@@ -87,5 +87,16 @@ int main(){
                 }
             }
         }
+        else {
+            response = "Komande e panjohur!";
+        }
+
+        sendto(serverSocket, response.c_str(), (int)response.length(), 0, (sockaddr*)&clientAddr, clientLen);
+    }
+
+    closesocket(serverSocket);
+    WSACleanup();
+    return 0;
+}
 
 
