@@ -52,3 +52,10 @@ char buffer[BUFFER_SIZE];
 int serverLen = sizeof(serverAddr);
 int n = recvfrom(clientSocket, buffer, BUFFER_SIZE - 1, 0,
                  (sockaddr*)&serverAddr, &serverLen);
+if (n == SOCKET_ERROR) {
+    std::cout << "Gabim ne marrjen e pergjigjes: " << WSAGetLastError() << std::endl;
+    } else {
+        buffer[n] = '\0';
+        std::cout << "Pergjigja nga serveri:\n" << buffer << std::endl;
+    }
+}
