@@ -108,6 +108,28 @@ int main(){
                 }
             }
         }
+        else if (msg.rfind("execute|", 0) == 0) {
+
+            if (senderIP != IP_ADMINIT) {
+                response = "GABIM: Ju nuk keni autorizim per te ekzekutuar! Vetem Admini lejohet.";
+                std::cout << "Tentim i paautorizuar per execute nga: " << senderIP << std::endl;
+            }
+            else {
+                std::string filename = msg.substr(8);
+
+                int result = system(filename.c_str());
+
+                if (result == 0) {
+                    response = "Sukses: File u ekzekutua me sukses nga Admini!";
+                    std::cout << "Admini ekzekutoi file-in: " << filename << std::endl;
+                } else {
+                    response = "Gabim: File nuk mund te ekzekutohet!";
+                }
+            }
+        }
+      
+
+
         else {
             response = "Komande e panjohur!";
         }
