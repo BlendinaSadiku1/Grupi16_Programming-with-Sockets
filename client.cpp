@@ -34,8 +34,12 @@ int main() {
 //Loop qe klienti te mund te dergoj shume komanda
 while (true) {
     std::string message;
-    std::cout << "\nKomandat: read|file.txt OSE write|file.txt|teksti (ose 'exit'):\n";
-    std::cout << "> ";
+    std::cout << "\nKomandat:\n";
+    std::cout << "read|file.txt\n";
+    std::cout << "write|file.txt|teksti\n";
+    std::cout << "execute|file.bat\n";
+    std::cout << "exit\n> ";
+
     std::getline(std::cin, message);
 
     if (message == "exit") break;
