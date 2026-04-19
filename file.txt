@@ -1,3 +1,3 @@
-Pershendetje
-Ckemi
-Hello
+Rrjetat kompjuterike janë sisteme që mundësojnë lidhjen dhe komunikimin ndërmjet kompjuterëve dhe pajisjeve të ndryshme elektronike.
+ Përmes rrjeteve kompjuterike, përdoruesit mund të shkëmbejnë të dhëna, të ndajnë burime si printerë, file dhe lidhje interneti, si dhe të komunikojnë në kohë reale.
+ Ato luajnë një rol shumë të rëndësishëm në jetën moderne, sidomos në biznese, universitete dhe institucione të ndryshme.
