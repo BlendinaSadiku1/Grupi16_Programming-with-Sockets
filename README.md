@@ -18,12 +18,6 @@ Ky projekt është testuar me sukses në një rrjet real lokal duke përdorur t�
 - **Role-Based Access Control**  
   Sistemi përkrah dy role: **admin** dhe **klient**.
 
-- **Admin Login me fjalëkalim**  
-  Admini ka të drejtë për lexim, shkrim dhe ekzekutim.
-
-- **Hidden Password Input**  
-  Fjalëkalimi nuk shfaqet gjatë hyrjes për siguri.
-
 - **Read Command**  
   Klienti mund të lexojë përmbajtjen e skedarit në server.
 
@@ -32,9 +26,6 @@ Ky projekt është testuar me sukses në një rrjet real lokal duke përdorur t�
 
 - **Execute Command**  
   Klienti mund të marrë dhe ekzekutojë një batch file nga serveri.
-
-- **File Handling**  
-  Serveri menaxhon skedarët për testim dhe demonstrim.
 
 - **Client-Side Execution**  
   Batch file ekzekutohet në kompjuterin e klientit.
