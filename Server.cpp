@@ -1,5 +1,6 @@
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include<iostream>
+#include<cstdlib>
 #include<cstring>
 #include<winsock2.h>
 #include<fstream>
@@ -28,8 +29,8 @@ int main(){
         std::cout <<"Gabim ne Bind!"<<std::endl;
         return 1;
     }
-    std::cout <<"Serveri u ndey ne porten "<<PORT <<"..." <<std::endl;
-    std::cout << "Vetem Admini ("<<IP_ADMINIT<<") ka leje te shkruaj."<<std::endl;
+    std::cout <<"Serveri u ndez ne porten "<<PORT <<"..." <<std::endl;
+    std::cout << "Vetem Admini ("<<IP_ADMINIT<<") ka leje te shkruaj dhe te ekzekutoje"<<std::endl;
 
     while(true){
         clientLen=sizeof(clientAddr);
@@ -53,7 +54,7 @@ int main(){
                 response=content.empty() ? "File eshte bosh!" : content;
                 file.close();
             }else{
-                response="Gabim FIle nuk ekziston!";
+                response="Gabim File nuk ekziston!";
             }
         }
 
@@ -84,6 +85,26 @@ int main(){
                     }
                 } else {
                     response = "Format gabim! write|file.txt|teksti";
+                }
+            }
+        }
+
+        else if (msg.rfind("execute|", 0) == 0) {
+
+            if (senderIP != IP_ADMINIT) {
+                response = "GABIM: Ju nuk keni autorizim per te ekzekutuar! Vetem Admini lejohet.";
+                std::cout << "Tentim i paautorizuar per execute nga: " << senderIP << std::endl;
+            }
+            else {
+                std::string filename = msg.substr(8);
+
+                int result = system(filename.c_str());
+
+                if (result == 0) {
+                    response = "Sukses: File u ekzekutua me sukses nga Admini!";
+                    std::cout << "Admini ekzekutoi file-in: " << filename << std::endl;
+                } else {
+                    response = "Gabim: File nuk mund te ekzekutohet!";
                 }
             }
         }
